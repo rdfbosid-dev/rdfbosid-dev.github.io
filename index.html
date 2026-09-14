@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>rdf-dev | Web Developer & Sistem Digital untuk Bisnis</title>
 <meta name="description" content="Portofolio Rodif — membangun website, PWA, dan sistem digital praktis untuk bisnis kecil.">
+<script>
+  (function(){
+    var saved = localStorage.getItem('rdf-dev-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+  })();
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +28,20 @@
     --text-muted:#9098B5;
     --line:rgba(255, 255, 255, 0.8);
     --maxw:1140px;
+    color-scheme: dark;
+  }
+
+  [data-theme="light"]{
+    --navy-900:#F3F7FC;
+    --navy-800:#FFFFFF;
+    --navy-700:#E6EDF7;
+    --blue:#2E7DE0;
+    --blue-dark:#1F5FB3;
+    --blue-light:#1768C9;
+    --text-light:#16233A;
+    --text-muted:#5B6577;
+    --line:rgba(15, 23, 42, 0.12);
+    color-scheme: light;
   }
 
   *{
@@ -40,9 +60,9 @@
     font-family:'Ubuntu', sans-serif;
     background:linear-gradient(
       180deg,
-      #03335d 0%,
-      #011144 50%,
-      #020b22 100%
+      var(--navy-900) 0%,
+      var(--navy-800) 50%,
+      var(--navy-700) 100%
     );
     background-attachment:fixed;
     color:var(--text-light);
@@ -114,6 +134,12 @@
     color:var(--blue);
   }
 
+  .nav-end{
+    display:flex;
+    align-items:center;
+    gap:32px;
+  }
+
   .nav-links{
     display:flex;
     gap:32px;
@@ -164,6 +190,47 @@
     background:none;
     border:none;
     padding:0;
+  }
+
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+
+  .theme-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:none;
+    border:1.5px solid var(--line);
+    color:var(--text-light);
+    cursor:pointer;
+    transition:border-color .2s ease, background .2s ease;
+  }
+
+  .theme-toggle:hover{
+    border-color:var(--blue-light);
+  }
+
+  .theme-toggle svg{
+    width:18px;
+    height:18px;
+  }
+
+  .theme-toggle .icon-sun{
+    display:none;
+  }
+
+  [data-theme="light"] .theme-toggle .icon-moon{
+    display:none;
+  }
+
+  [data-theme="light"] .theme-toggle .icon-sun{
+    display:block;
   }
 
   .nav-toggle span{
@@ -415,6 +482,10 @@
     height:350px;
     background:none;
     box-shadow:none;
+  }
+
+  [data-theme="light"] .photo-backdrop{
+    background:var(--navy-900);
   }
 
   .hero-photo-img{
@@ -1257,17 +1328,35 @@
       rdf<span>-</span>dev
     </a>
 
-    <div class="nav-links">
-      <a href="#tentang">Tentang</a>
-      <a href="#layanan">Layanan</a>
-      <a href="#karya">Karya</a>
-    </div>
+    <div class="nav-end">
 
-    <button class="nav-toggle" id="navToggle" aria-label="Buka menu navigasi" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+      <div class="nav-links">
+        <a href="#tentang">Tentang</a>
+        <a href="#layanan">Layanan</a>
+        <a href="#karya">Karya</a>
+      </div>
+
+      <div class="nav-right">
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Ganti tema terang/gelap" type="button">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Buka menu navigasi" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+
+    </div>
 
   </nav>
 
@@ -2090,6 +2179,17 @@
 
     scrollTopBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+
+  if(themeToggle){
+    themeToggle.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', current);
+      localStorage.setItem('rdf-dev-theme', current);
     });
   }
 
