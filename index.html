@@ -25,6 +25,7 @@
     --blue-dark: #285a92;
     --blue-light:rgb(115, 199, 255);
     --text-light:#F5F3EC;
+    --text-button: #F5F3EC;
     --text-muted:#9098B5;
     --line:rgba(255, 255, 255, 0.8);
     --maxw:1140px;
@@ -32,13 +33,14 @@
   }
 
   [data-theme="light"]{
-    --navy-900:#F3F7FC;
-    --navy-800:#FFFFFF;
-    --navy-700:#E6EDF7;
+    --navy-900:#eef4fa;
+    --navy-800:#d8e6f7;
+    --navy-700:#c2d8f6;
     --blue:#2E7DE0;
     --blue-dark:#1F5FB3;
     --blue-light:#1768C9;
     --text-light:#16233A;
+    --text-button: #F5F3EC;
     --text-muted:#5B6577;
     --line:rgba(15, 23, 42, 0.12);
     color-scheme: light;
@@ -185,8 +187,8 @@
     flex-direction:column;
     justify-content:center;
     gap:5px;
-    width:34px;
-    height:34px;
+    width:30px;
+    height:30px;
     background:none;
     border:none;
     padding:0;
@@ -202,8 +204,8 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    width:36px;
-    height:36px;
+    width:32px;
+    height:32px;
     border-radius:50%;
     background:none;
     border:1.5px solid var(--line);
@@ -401,7 +403,7 @@
 
   .btn-primary{
     background:var(--blue);
-    color:var(--text-light);
+    color:var(--text-button);
     font-family:'Ubuntu', sans-serif;
     font-weight:700;
     font-size:15px;
@@ -935,7 +937,7 @@
   }
 
   .filter-btn.active{
-    color:var(--text-light);
+    color:var(--text-button);
   }
 
 
@@ -946,7 +948,7 @@
   .work-list{
     display:flex;
     flex-direction:column;
-    gap:18px;
+    gap:40px;
     margin-top:30px;
   }
 
@@ -1173,7 +1175,7 @@
 
   .cta{
     background: none;
-    padding:86px 0 90px;
+    padding:30px 0;
     border-radius:26px;
     max-width:1100px;
     margin-left:auto;
@@ -1205,7 +1207,7 @@
 
   .cta .btn-primary{
     background:var(--blue);
-    color:var(--text-light);
+    color:var(--text-button);
   }
 
   .cta .btn-primary:hover{
@@ -1236,7 +1238,8 @@
   ========================================================== */
 
   footer{
-    padding:36px 0 44px;
+    padding:20px 0;
+    margin-top: 30px;
   }
 
   footer .wrap{
@@ -1278,7 +1281,7 @@
     height:46px;
     border-radius:50%;
     background:var(--blue);
-    color:var(--text-light);
+    color:var(--text-button);
     border:none;
     display:flex;
     align-items:center;
